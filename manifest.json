@@ -1,0 +1,21 @@
+{
+  "name": "NOT降り過ごし！",
+  "short_name": "NOT降り過ごし",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f0f0f0",
+  "theme_color": "#007bff",
+  "description": "ユーザーが指定した駅に近づくと通知が鳴るアプリです。",
+  "icons": [
+    {
+      "src": "icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

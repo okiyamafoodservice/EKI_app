@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>通知APIデモ</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+      button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>通知APIデモ</h1>
+      <button id="btn">送信</button>
+    </div>
+
+    <script>
+      const btn = document.querySelector("#btn");
+      btn.addEventListener("click", notification);
+
+      function notification() {
+        if (!("Notification" in window)) {
+          alert("このブラウザは通知APIに対応していません。");
+          return;
+        }
+
+        switch (Notification.permission) {
+          case "default":
+            Notification.requestPermission().then((permission) => {
+              if (permission === "granted") {
+                new Notification("Code Tips", {
+                  body: "通知の許可が与えられました！",
+                  icon: "https://via.placeholder.com/128", // 任意のアイコンURL
+                });
+              } else {
+                alert("通知が拒否されています");
+              }
+            });
+            break;
+          case "granted":
+            new Notification("Code Tips", {
+              body: "これは通知のデモです。",
+              icon: "https://via.placeholder.com/128", // 任意のアイコンURL
+            });
+            break;
+          case "denied":
+            alert("通知が拒否されています");
+            break;
+        }
+      }
+    </script>
+  </body>
+</html>
